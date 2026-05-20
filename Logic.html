@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simple Page</title>
+  <style>
+    :root { --bg:#f7f8fb; --card:#fff; --accent:#2563eb; --muted:#6b7280; }
+    body { margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial; background:var(--bg); color:#111; }
+    header { background:linear-gradient(90deg,#ffffffcc,#f0f4ff); padding:20px 24px; box-shadow:0 1px 0 rgba(0,0,0,.04); display:flex; align-items:center; justify-content:space-between; }
+    .brand { font-weight:700; color:var(--accent); }
+    .container { max-width:960px; margin:32px auto; padding:0 16px; }
+    .grid { display:grid; grid-template-columns:1fr 320px; gap:20px; align-items:start; }
+    .card { background:var(--card); border-radius:12px; padding:18px; box-shadow:0 6px 18px rgba(16,24,40,.06); }
+    h1 { margin:0 0 8px 0; font-size:1.6rem; }
+    p.lead { margin:0 0 16px 0; color:var(--muted); }
+    .feature-list { display:grid; gap:10px; }
+    .feature { padding:10px; border-radius:8px; background:linear-gradient(180deg,#fff,#fbfdff); border:1px solid #eef2ff; }
+    form { display:flex; flex-direction:column; gap:12px; }
+    input,textarea { padding:10px 12px; border:1px solid #e6e9ef; border-radius:8px; font-size:0.95rem; }
+    button { background:var(--accent); color:#fff; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; }
+    footer { text-align:center; color:var(--muted); font-size:0.9rem; margin:36px 0 12px; }
+    @media (max-width:880px){ .grid{grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">MySite</div>
+    <nav>
+      <a href="#features" style="margin-right:12px;color:var(--muted);text-decoration:none">Features</a>
+      <a href="#contact" style="color:var(--muted);text-decoration:none">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1>Welcome to a simple HTML sample</h1>
+      <p class="lead">A clean, responsive layout with a small contact form and interactive feedback using vanilla JavaScript.</p>
+
+      <div class="grid" style="margin-top:18px;">
+        <div>
+          <div class="feature-list">
+            <div class="feature"><strong>Responsive</strong> — adapts to mobile and desktop.</div>
+            <div class="feature"><strong>Accessible</strong> — semantic elements and labels.</div>
+            <div class="feature"><strong>Lightweight</strong> — no frameworks required.</div>
+          </div>
+        </div>
+
+        <aside class="card" style="padding:14px;">
+          <h2 style="margin-top:0;font-size:1.1rem">Contact Us</h2>
+          <form id="contactForm" aria-labelledby="contactFormTitle">
+            <label>
+              <span style="display:block;font-size:0.85rem;margin-bottom:6px;color:var(--muted)">Name</span>
+              <input type="text" name="name" required placeholder="Your name" />
+            </label>
+            <label>
+              <span style="display:block;font-size:0.85rem;margin-bottom:6px;color:var(--muted)">Email</span>
+              <input type="email" name="email" required placeholder="you@example.com" />
+            </label>
+            <label>
+              <span style="display:block;font-size:0.85rem;margin-bottom:6px;color:var(--muted)">Message</span>
+              <textarea name="message" rows="4" placeholder="Hi there…" required></textarea>
+            </label>
+            <button type="submit">Send message</button>
+            <div id="status" style="margin-top:8px;font-size:0.9rem;color:var(--muted)"></div>
+          </form>
+        </aside>
+      </div>
+    </section>
+
+    <footer>Made with HTML · Example page</footer>
+  </main>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const status = document.getElementById('status');
+      const form = e.target;
+      status.textContent = 'Sending…';
+      const data = new FormData(form);
+      // Simulate async send
+      setTimeout(() => {
+        status.textContent = 'Thanks — your message was received!';
+        form.reset();
+      }, 800);
+    });
+  </script>
+</body>
+</html>
